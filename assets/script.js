@@ -14,8 +14,16 @@ convert("usd-to-brl");
 //Funções
 
 function formatCurrency(value) {
-  //ajustar o valor
+  let fixedValue = fixValue(value); //ajusta o valor
   //utilizar funcao de formatar
+  let options = {
+    useGrouping: false,
+    minimumFractionDigits: 2,
+  };
+
+  let formatter = new Intl.NumberFormat("pt-BR", options);
+  return formatter.format(fixedValue);
+
   //retorna o valor formatado
 }
 
@@ -23,7 +31,7 @@ function fixValue(value) {
   let fixedValue = value.replace(",", ".");
   let floatValue = parseFloat(fixedValue);
 
-  if (floatValue == NaN0) {
+  if (floatValue == NaN) {
     floatValue = 0;
   }
 
